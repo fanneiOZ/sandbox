@@ -1,0 +1,9 @@
+{
+    "files": [
+        "src/backend/main.ts"
+    ],
+    "compilerOptions": {
+        "noImplicitAny": true,
+        "target": "ES6"
+    }
+}

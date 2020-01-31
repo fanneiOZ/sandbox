@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+    build-env:
+        build:
+            context: ./dockerfiles/development/
+            dockerfile: Dockerfile
+        image: fanneioz/sandbox/development:latest
+        volumes: 
+            - .:/vagrant
