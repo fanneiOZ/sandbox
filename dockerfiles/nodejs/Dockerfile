@@ -19,7 +19,7 @@ RUN chown -hR vagrant /vagrant
 
 ENV HOME=/vagrant
 
-RUN npm install -g gulp-cli
+RUN npm install -g gulp-cli @nestjs/cli
 
 USER vagrant
 
