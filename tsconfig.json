@@ -1,9 +1,16 @@
 {
-    "files": [
-        "src/backend/main.ts"
-    ],
     "compilerOptions": {
         "noImplicitAny": true,
-        "target": "ES6"
-    }
+        "removeComments": true,
+        "target": "es2019",
+        "types": [
+            "node"
+        ]
+    },
+    "include": [
+        "src/**/*.ts",      
+    ],
+    "exclude": [
+        "./node_modules/**/*.ts"
+    ]  
 }
