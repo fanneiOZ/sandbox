@@ -25,4 +25,4 @@ USER vagrant
 
 EXPOSE 80 8080 3000
 
-CMD [ "npm", "run", "start" ]
+CMD [ "npm", "run", "start:dev" ]
