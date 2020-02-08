@@ -107,3 +107,7 @@ dist
 .bash_history
 
 .config/
+
+data/
+
+.vscode/
