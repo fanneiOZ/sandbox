@@ -5,3 +5,4 @@ RUN apk update \
     sudo \
     bash
 
+COPY init-db.sh /docker-entrypoint-initdb.d/
