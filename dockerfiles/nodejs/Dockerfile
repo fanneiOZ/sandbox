@@ -19,10 +19,10 @@ RUN chown -hR vagrant /vagrant
 
 ENV HOME=/vagrant
 
-RUN npm install -g gulp-cli
+RUN npm install -g gulp-cli @nestjs/cli
 
 USER vagrant
 
 EXPOSE 80 8080 3000
 
-ENTRYPOINT ["/bin/bash"]
+CMD [ "npm", "run", "start:dev" ]

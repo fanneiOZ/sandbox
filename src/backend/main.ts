@@ -1,5 +1,8 @@
-function hello(compiler: string) {
-    console.log(`Hello from ${compiler}`);
-}
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
 
-hello('Typescript');
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  await app.listen(3000);
+}
+bootstrap();
