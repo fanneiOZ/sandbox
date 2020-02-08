@@ -14,6 +14,3 @@ RUN apk update \
 COPY login-password-less.php /var/www/html/plugins-enabled/
 
 USER adminer
-
-
-
