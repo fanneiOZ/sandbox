@@ -1,15 +1,14 @@
 import { Injectable } from "@nestjs/common";
+import { Product } from '../entity/Product';
+import { ProductInterface } from "../entity/ProductInterface";
 
-namespace Backend.Providers.Product.Service {
-
-    @Injectable()
-    export class ProductService {
-        /**
-         * @param id 
-         * @returns ProductInterface
-         */
-        public static getProductById(id: number): Entity  {
-            return new Product(id, 'a');
-        }
+@Injectable()    
+export class ProductService {
+    /**
+     * @param id 
+     * @returns ProductInterface
+     */
+    public getProductById(id: number): ProductInterface {
+        return new Product(id, 'a#' + id.toString());
     }
 }

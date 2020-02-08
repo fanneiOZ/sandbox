@@ -1,32 +1,21 @@
-import { Controller, Header, Get, Res, HttpStatus } from "@nestjs/common";
-import { Response } from 'express';
+import { Controller, Header, Get } from "@nestjs/common";
+import { ProductService } from '../providers/product/service/ProductService';
 
 @Controller('product')
 export class ProductController {
+    /**
+     * 
+     * @param productService 
+     */
+    constructor(private productService: ProductService) {}
+
     @Get()
-    @Header('Content-Type','application/json')
+    @Header('Content-Type','application/json')    
     getAll(): string {
         return JSON.stringify([
-            {
-                id: 'AB-2324',
-                product_name: 'AB Test 2324'
-            },
-            {
-                id: 'AB-2322',
-                product_name: 'AB Test 2322'
-            }
+            this.productService.getProductById(2),
+            this.productService.getProductById(1),
+            this.productService.getProductById(3),
         ]);
-    }
-
-    @Get('express')
-    getAllExp(@Res() res: Response) {
-        res.status(HttpStatus.OK).json([{
-            id: 'AB-2324',
-            product_name: 'AB Test 2324'
-        },
-        {
-            id: 'AB-2322',
-            product_name: 'AB Test 2322'
-        }]);
     }
 }
