@@ -1,14 +1,21 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, Scope } from "@nestjs/common";
 import { Product } from '../entity/Product';
-import { ProductInterface } from "../entity/ProductInterface";
 
-@Injectable()    
-export class ProductService {
-    /**
-     * @param id 
-     * @returns ProductInterface
-     */
-    public getProductById(id: number): ProductInterface {
-        return new Product(id, 'a#' + id.toString());
+@Injectable({scope: Scope.REQUEST})    
+export class ProductService  {    
+    public getProducts() {        
+        return Product.findAll();
+    }
+
+    public createProduct(name: string) {
+        return Product.build({name: name})
+            .save()
+            .then(() => {
+                return true;
+            })
+            .catch(e => {
+                console.error('Saving Error ')
+                return false;
+            });
     }
 }
