@@ -4,20 +4,21 @@ import { ProductService } from '../providers/product/service/ProductService';
 @Controller('product')
 export class ProductController {
     /**
-     * 
      * @param productService 
      */
     constructor(private productService: ProductService) {}
 
     @Get('all')
     @Header('Content-Type','application/json')    
-    getAll(): string {        
-        return JSON.stringify(this.productService.getProducts());
+    async getAll() {
+        let products = await this.productService.getProducts();
+        return JSON.stringify(products);
     }
 
     @Post('add')  
-    @HttpCode(204)
-    put(@Body() req: {name: string}) {
-        this.productService.createProduct(req.name);
+    @HttpCode(200)
+    @Header('Content-Type','application/json')
+    async addProduct(@Body() req: {name: string}) {
+        return this.productService.createProduct(req.name);
     }
 }

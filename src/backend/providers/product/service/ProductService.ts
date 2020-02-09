@@ -1,26 +1,21 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, Scope } from "@nestjs/common";
 import { Product } from '../entity/Product';
 
-@Injectable()    
-export class ProductService {
-    
-    public getProducts() {
-        return Product.findAll().thenReturn(products => {return products});
+@Injectable({scope: Scope.REQUEST})    
+export class ProductService  {    
+    public getProducts() {        
+        return Product.findAll();
     }
 
-    public createProduct(name: string): boolean {
-        let result: boolean = false;
-
-        Product.build({name: name})
+    public createProduct(name: string) {
+        return Product.build({name: name})
             .save()
             .then(() => {
-                result = true;
+                return true;
             })
             .catch(e => {
                 console.error('Saving Error ')
-                result = false;
-            })
-
-        return result;
+                return false;
+            });
     }
 }
