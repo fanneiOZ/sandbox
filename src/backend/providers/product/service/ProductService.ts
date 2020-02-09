@@ -1,8 +1,8 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, Scope } from "@nestjs/common";
 import { Product } from '../entity/Product';
 import { ProductInterface } from "../entity/ProductInterface";
 
-@Injectable()    
+@Injectable({ scope: Scope.REQUEST })    
 export class ProductService {
     /**
      * @param id 
