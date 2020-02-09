@@ -1,5 +1,5 @@
 import { Injectable, Scope } from "@nestjs/common";
-import { Product } from '../entity/Product';
+import { Product } from '../Entity/Product';
 
 @Injectable({scope: Scope.REQUEST})    
 export class ProductService  {    

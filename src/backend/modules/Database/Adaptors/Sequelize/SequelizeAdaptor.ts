@@ -1,8 +1,8 @@
-import { Sequelize, DataTypes } from 'sequelize';
+import { Sequelize } from 'sequelize';
 import { OrmAdaptorInterface } from '../OrmAdaptorInterface';
-import { AppConfigService } from '../../../configuration/ConfigurationService';
+import { AppConfigService } from 'src/backend/Modules/Configuration/Service/ConfigurationService';
 
-import { Product } from 'src/backend/providers/product/entity/Product';
+import { Product } from 'src/backend/Modules/Product/Entity/Product';
 
 export class SequelizeAdaptor implements OrmAdaptorInterface {
     protected adaptor: Sequelize;
@@ -40,7 +40,6 @@ export class SequelizeAdaptor implements OrmAdaptorInterface {
 
     public initialize() {
         Product.init(Product.modelAttributes, {sequelize: this.adaptor, tableName: Product.tableName});
-
         this.adaptor.sync();
     }
 }
