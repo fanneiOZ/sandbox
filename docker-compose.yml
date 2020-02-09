@@ -20,7 +20,11 @@ services:
             dockerfile: Dockerfile
         image: fanneioz/sandbox/postgres:latest
         links:
-            - node            
+            - node
+        environment: 
+            POSTGRES_PASSWORD: backend
+            POSTGRES_USER: backend
+            POSTGRES_DB: backend
     mongo:
         image: mongo:bionic
         environment:

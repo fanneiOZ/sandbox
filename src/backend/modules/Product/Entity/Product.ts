@@ -1,5 +1,5 @@
 import { ProductInterface } from './ProductInterface';
-import { AbstractModel } from '../../database/adaptors/sequelize/AbstractModel';
+import { AbstractModel } from 'src/backend/Modules/Database/Adaptors/Sequelize/AbstractModel';
 import { DataTypes } from 'sequelize';
 
 export class Product extends AbstractModel implements ProductInterface {

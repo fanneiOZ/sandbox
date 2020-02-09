@@ -1,5 +1,5 @@
 import { ConfigService } from "@nestjs/config";
-import { DbConfig } from "./interface/DbConfig";
+import { DbConfig } from "../Interface/DbConfig";
 
 export class AppConfigService extends ConfigService {
     public appPort: string;

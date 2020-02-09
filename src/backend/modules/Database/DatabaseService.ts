@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { AppConfigService } from '../configuration/ConfigurationService';
-import { SequelizeAdaptor } from './adaptors/sequelize/SequelizeAdaptor';
-import { OrmAdaptorInterface } from './adaptors/OrmAdaptorInterface';
+import { AppConfigService } from '../Configuration/Service/ConfigurationService';
+import { SequelizeAdaptor } from './Adaptors/Sequelize/SequelizeAdaptor';
+import { OrmAdaptorInterface } from './Adaptors/OrmAdaptorInterface';
 
 
 @Injectable()
