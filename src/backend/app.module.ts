@@ -5,7 +5,7 @@ import { DatabaseModule } from './modules/db.module';
 
 @Module({
   imports: [
-    // ProductModule,
+    ProductModule,
     ConfigurationModule,
     DatabaseModule
   ]

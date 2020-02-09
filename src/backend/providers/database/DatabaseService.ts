@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { AppConfigService } from '../configuration/ConfigurationService';
-import { SequelizeAdaptor } from './adaptors/SequelizeAdaptor';
+import { SequelizeAdaptor } from './adaptors/sequelize/SequelizeAdaptor';
 import { OrmAdaptorInterface } from './adaptors/OrmAdaptorInterface';
 
 
@@ -11,5 +11,6 @@ export class DatabaseService {
     constructor (protected readonly configService: AppConfigService) {
         this.dbAdaptor = new SequelizeAdaptor(configService);
         this.dbAdaptor.connectDatabase();
+        this.dbAdaptor.initialize();
     }
 }

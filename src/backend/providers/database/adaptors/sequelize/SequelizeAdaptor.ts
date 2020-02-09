@@ -1,6 +1,8 @@
-import { Sequelize } from 'sequelize';
-import { OrmAdaptorInterface } from './OrmAdaptorInterface';
-import { AppConfigService } from '../../configuration/ConfigurationService';
+import { Sequelize, DataTypes } from 'sequelize';
+import { OrmAdaptorInterface } from '../OrmAdaptorInterface';
+import { AppConfigService } from '../../../configuration/ConfigurationService';
+
+import { Product } from 'src/backend/providers/product/entity/Product';
 
 export class SequelizeAdaptor implements OrmAdaptorInterface {
     protected adaptor: Sequelize;
@@ -25,11 +27,20 @@ export class SequelizeAdaptor implements OrmAdaptorInterface {
         );
     }
     
-    connectDatabase() {
+    public connectDatabase() {
         this.adaptor.authenticate()
-        .catch(e => {
-            console.error(e.name);
-            console.error(this.adaptor);
-        });
+            .then(() => {
+                console.log('Database connected: ', [ this.adaptor.config ]);
+            })
+            .catch(e => {
+                console.error(e.name);
+                console.error(this.adaptor);
+            });
+    }
+
+    public initialize() {
+        Product.init(Product.modelAttributes, {sequelize: this.adaptor, tableName: Product.tableName});
+
+        this.adaptor.sync();
     }
 }
