@@ -1,0 +1,11 @@
+{
+    "development": {
+      "username": "backend",
+      "password": "backend",
+      "database": "backend",
+      "host": "postgres",
+      "dialect": "postgres",
+      "migrationStorageTableName": "backend_migrations",
+      "migrationStorageTableSchema": "metadata"
+    }
+}

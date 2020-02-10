@@ -4,8 +4,8 @@ import { ProductNotFound } from "../Error/ProductNotFound";
 import { ProductInterface } from "../Entity/ProductInterface";
 
 @Injectable({scope: Scope.REQUEST})    
-export class ProductService {
-    public getProducts() {        
+export class ProductService  {
+    public getProducts() {
         return Product.findAll();
     }
 

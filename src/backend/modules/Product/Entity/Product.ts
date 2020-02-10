@@ -22,7 +22,6 @@ export class Product extends AbstractModel implements ProductInterface {
             allowNull: false
         },
         active: {
-            field: 'active',
             type: DataTypes.BOOLEAN,
             defaultValue: true
         },
