@@ -3,8 +3,10 @@ import { AbstractModel } from 'src/backend/Modules/Database/Adaptors/Sequelize/A
 import { DataTypes } from 'sequelize';
 
 export class Product extends AbstractModel implements ProductInterface {
-    public id!: number;
-    public name!: string;
+    protected id!: number;
+    protected name!: string;
+    protected active!: Boolean;
+    protected productNumber!: string;
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;
 
@@ -18,6 +20,11 @@ export class Product extends AbstractModel implements ProductInterface {
         name: {
             type: new DataTypes.STRING(255),
             allowNull: false
+        },
+        active: {
+            field: 'active',
+            type: DataTypes.BOOLEAN,
+            defaultValue: true
         },
         createdAt: {
             field: 'created_at',

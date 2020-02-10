@@ -21,4 +21,10 @@ export class ProductController {
     async addProduct(@Body() req: {name: string}) {
         return this.productService.createProduct(req.name);
     }
+
+    @Get('async/:id')
+    @Header('Content-Type','application/json')
+    async getById(@Param('id') id: string) {
+        return JSON.stringify(await this.productService.findProductById(id));
+    }
 }
