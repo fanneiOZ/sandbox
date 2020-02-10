@@ -40,6 +40,5 @@ export class SequelizeAdaptor implements OrmAdaptorInterface {
 
     public initialize() {
         Product.init(Product.modelAttributes, {sequelize: this.adaptor, tableName: Product.tableName});
-        this.adaptor.sync();
     }
 }

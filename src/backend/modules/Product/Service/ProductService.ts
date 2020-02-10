@@ -2,8 +2,8 @@ import { Injectable, Scope } from "@nestjs/common";
 import { Product } from '../Entity/Product';
 
 @Injectable({scope: Scope.REQUEST})    
-export class ProductService  {    
-    public getProducts() {        
+export class ProductService  {
+    public getProducts() {
         return Product.findAll();
     }
 
