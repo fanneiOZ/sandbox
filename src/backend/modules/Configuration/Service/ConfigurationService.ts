@@ -1,5 +1,5 @@
 import { ConfigService } from "@nestjs/config";
-import { DbConfig } from "../Interface/DbConfig";
+import { DbConfig } from "../interface/dbConfig";
 
 export class AppConfigService extends ConfigService {
     public appPort: string;
@@ -15,7 +15,7 @@ export class AppConfigService extends ConfigService {
     setUpDatabase(): void {
         this.dbConfig = new DbConfig(
             this.get('DB_HOST'),
-            <number>this.get('DB_PORT'),
+            this.get('DB_PORT') as number,
             this.get('DB_NAME'),
             this.get('DB_USER'),
             this.get('DB_PASSWORD')

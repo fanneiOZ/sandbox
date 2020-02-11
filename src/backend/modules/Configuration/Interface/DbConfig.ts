@@ -1,4 +1,4 @@
-import { ConfigurationInterface } from "./ConfigurationInterface";
+import { ConfigurationInterface } from "./configurationInterface";
 
 export class DbConfig implements ConfigurationInterface {
     
