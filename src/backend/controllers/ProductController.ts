@@ -26,8 +26,8 @@ export class ProductController {
     @Header('Content-Type','application/json')
     async getById(@Param('id') id: string) {
         const product = await this.productService.findProductById(id);
-        const category = await product.getProductCategory();
-        return JSON.stringify([product, category]);
+        // const category = await product.getProductCategory();
+        return JSON.stringify([product]);
     }
 
     @Delete(':id')
