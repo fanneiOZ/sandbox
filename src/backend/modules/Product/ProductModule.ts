@@ -1,6 +1,6 @@
-import { Module } from '@nestjs/common';
-import { ProductController } from 'src/backend/Controllers/ProductController';
-import { ProductService } from './Service/ProductService';
+import { Module } from 'src/backend/Modules/product/node_modules/@nestjs/common';
+import { ProductController } from 'src/backend/controllers/productController';
+import { ProductService } from './service/productService';
 import { DatabaseModule } from '../Database/DatabaseModule';
 
 @Module({

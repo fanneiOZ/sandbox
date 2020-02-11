@@ -1,8 +1,8 @@
-import { Sequelize } from 'sequelize';
-import { OrmAdaptorInterface } from '../OrmAdaptorInterface';
+import { Sequelize } from 'src/backend/Modules/Database/adaptors/sequelize/node_modules/sequelize';
+import { OrmAdaptorInterface } from '../ormAdaptorInterface';
 import { AppConfigService } from 'src/backend/Modules/Configuration/Service/ConfigurationService';
 
-import { Product } from 'src/backend/Modules/Product/Entity/Product';
+import { Product } from 'src/backend/Modules/product/entity/product';
 
 export class SequelizeAdaptor implements OrmAdaptorInterface {
     protected adaptor: Sequelize;

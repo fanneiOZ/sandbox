@@ -1,4 +1,4 @@
-import { AbstractError } from '../../error/AbstractError';
+import { AbstractError } from '../../error/abstractError';
 
 export class ProductNotFound extends AbstractError {
     constructor(data?: any) {

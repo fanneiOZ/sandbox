@@ -1,5 +1,5 @@
-import { Controller, Header, Get, Put, Param, Post, HttpCode, Body, Delete } from "@nestjs/common";
-import { ProductService } from '../Modules/Product/Service/ProductService';
+import { Controller, Header, Get, Param, Post, HttpCode, Body, Delete } from "@nestjs/common";
+import { ProductService } from '../Modules/product/Service/ProductService';
 
 @Controller('product')
 export class ProductController {

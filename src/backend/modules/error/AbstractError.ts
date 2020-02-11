@@ -1,5 +1,5 @@
 import { sprintf } from 'sprintf-js';
-import { ErrorOptionsInterface } from './ErrorOptionsInterface';
+import { ErrorOptionsInterface } from './errorOptionsInterface';
 
 export abstract class AbstractError extends Error {
     constructor(errorName: string, errorOptions?: ErrorOptionsInterface) {

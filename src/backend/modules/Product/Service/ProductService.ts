@@ -1,6 +1,6 @@
 import { Injectable, Scope } from "@nestjs/common";
-import { Product } from '../Entity/Product';
-import { ProductNotFound } from "../Error/ProductNotFound";
+import { Product } from '../entity/product';
+import { ProductNotFound } from "../error/productNotFound";
 import { Op } from "sequelize";
 
 @Injectable({scope: Scope.REQUEST})    
