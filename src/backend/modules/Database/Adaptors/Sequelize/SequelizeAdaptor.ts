@@ -2,6 +2,7 @@ import { Sequelize } from 'sequelize';
 import { OrmAdaptorInterface } from '../ormAdaptorInterface';
 import { AppConfigService } from 'src/backend/modules/configuration/service/configurationService';
 import { Product } from 'src/backend/modules/product/entity/product';
+import { ProductCategory } from 'src/backend/modules/product/entity/productCategory';
 
 export class SequelizeAdaptor implements OrmAdaptorInterface {
 
@@ -30,7 +31,7 @@ export class SequelizeAdaptor implements OrmAdaptorInterface {
     public connectDatabase() {
         this.adaptor.authenticate()
             .then(() => {
-                console.log('Database connected: ', [ this.adaptor.config ]);
+                console.log('Database connected.');
             })
             .catch(e => {
                 console.error(e.name);
@@ -40,5 +41,12 @@ export class SequelizeAdaptor implements OrmAdaptorInterface {
 
     public initialize() {
         Product.init(Product.modelAttributes, {sequelize: this.adaptor, tableName: Product.tableName});
+        ProductCategory.init(
+            ProductCategory.modelAttributes,
+            {sequelize: this.adaptor, tableName: ProductCategory.tableName}
+        );
+        
+        ProductCategory.associateModel();
+        Product.associateModel();        
     }
 }

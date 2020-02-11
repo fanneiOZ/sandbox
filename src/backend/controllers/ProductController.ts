@@ -11,21 +11,23 @@ export class ProductController {
     @Get('all')
     @Header('Content-Type','application/json')    
     async getAll() {
-        let products = await this.productService.getProducts();
+        const products = await this.productService.getProducts();
         return JSON.stringify(products);
     }
 
     @Post('add')  
     @HttpCode(200)
     @Header('Content-Type','application/json')
-    async addProduct(@Body() req: {name: string}) {
-        return this.productService.createProduct(req.name);
+    async addProduct(@Body() req: {name: string, productNumber: string}) {
+        return this.productService.createProduct(req.name, req.productNumber);
     }
 
     @Get(':id')
     @Header('Content-Type','application/json')
     async getById(@Param('id') id: string) {
-        return JSON.stringify(await this.productService.findProductById(id));
+        const product = await this.productService.findProductById(id);
+        const category = await product.getProductCategory();
+        return JSON.stringify([product, category]);
     }
 
     @Delete(':id')
