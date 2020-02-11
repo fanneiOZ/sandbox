@@ -1,5 +1,5 @@
 export interface ErrorOptionsInterface {
-    data?: string;
-    logData?: boolean;
-    logStack?: boolean;
+  data?: string;
+  logData?: boolean;
+  logStack?: boolean;
 }

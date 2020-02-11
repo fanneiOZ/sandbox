@@ -6,16 +6,8 @@ import { ProductCategoryController } from 'src/backend/controllers/productCatego
 import { ProductCategoryService } from './service/productCategoryService';
 
 @Module({
-  imports: [
-    DatabaseModule
-  ],
-  controllers: [
-    ProductController,
-    ProductCategoryController
-  ],
-  providers: [
-    ProductService,
-    ProductCategoryService
-  ],
+  imports: [DatabaseModule],
+  controllers: [ProductController, ProductCategoryController],
+  providers: [ProductService, ProductCategoryService],
 })
 export class ProductModule {}

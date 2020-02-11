@@ -1,4 +1,4 @@
 export interface OrmAdaptorInterface {
-    connectDatabase(): void; 
-    initialize(): void;
+  connectDatabase(): void;
+  initialize(): void;
 }

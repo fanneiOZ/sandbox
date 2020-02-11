@@ -1,3 +1,3 @@
-export interface ConfigurationInterface {  
-    name?: string  
+export interface ConfigurationInterface {
+  name?: string;
 }

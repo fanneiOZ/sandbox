@@ -1,6 +1,6 @@
-import { Model, ModelAttributes} from 'sequelize';
+import { Model, ModelAttributes } from 'sequelize';
 
 export abstract class AbstractModel extends Model {
-    public static tableName: string;
-    public static modelAttributes: ModelAttributes;
+  public static tableName: string;
+  public static modelAttributes: ModelAttributes;
 }
