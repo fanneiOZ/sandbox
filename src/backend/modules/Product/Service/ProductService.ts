@@ -1,7 +1,7 @@
 import { Injectable, Scope } from "@nestjs/common";
 import { Product } from '../Entity/Product';
 import { ProductNotFound } from "../Error/ProductNotFound";
-import { ProductInterface } from "../Entity/ProductInterface";
+import { Op } from "sequelize";
 
 @Injectable({scope: Scope.REQUEST})    
 export class ProductService  {
@@ -18,7 +18,26 @@ export class ProductService  {
 
     public findProductById(productId: any) {
         return Product.findByPk(<number>productId)
-            .then(data => {return data ?? new ProductNotFound(productId)})
-            .catch(error => {return error});        
+            .then(data => {
+                return data 
+                    ?? new ProductNotFound(
+                        {id: productId}
+                    )
+            })
+            .catch(error => {return error});
+    }
+
+    public deactivateProductById(productId: any) {
+        return Product.update(
+            {active: false},
+            {where: {id: { [Op.eq]: <number>productId } }}
+            )
+            .then(data => {
+                return data 
+                    ?? new ProductNotFound(
+                        {id: productId}
+                    )
+            })
+            .catch(error => {return error});
     }
 }
