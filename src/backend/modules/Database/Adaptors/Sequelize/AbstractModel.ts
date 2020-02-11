@@ -1,4 +1,4 @@
-import { Model, ModelAttributes} from 'src/backend/Modules/Database/adaptors/sequelize/node_modules/sequelize';
+import { Model, ModelAttributes} from 'sequelize';
 
 export abstract class AbstractModel extends Model {
     public static tableName: string;

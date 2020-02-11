@@ -1,17 +1,16 @@
-import { Module } from 'src/backend/Modules/product/node_modules/@nestjs/common';
+import { Module } from '@nestjs/common';
 import { ProductController } from 'src/backend/controllers/productController';
 import { ProductService } from './service/productService';
-import { DatabaseModule } from '../Database/DatabaseModule';
+import { DatabaseService } from '../database/databaseService';
 
 @Module({
-  imports: [
-    DatabaseModule
-  ],
+  imports: [],
   controllers: [
     ProductController
   ],
   providers: [
-    ProductService
+    ProductService,
+    DatabaseService
   ],
 })
 export class ProductModule {}

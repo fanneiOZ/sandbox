@@ -15,4 +15,3 @@ export interface ProductInterface {
      */
     setName(name: string): ProductInterface;
 }
-

@@ -1,14 +1,14 @@
-import { Sequelize } from 'src/backend/Modules/Database/adaptors/sequelize/node_modules/sequelize';
+import { Sequelize } from 'sequelize';
 import { OrmAdaptorInterface } from '../ormAdaptorInterface';
-import { AppConfigService } from 'src/backend/Modules/Configuration/Service/ConfigurationService';
-
-import { Product } from 'src/backend/Modules/product/entity/product';
+import { AppConfigService } from 'src/backend/modules/configuration/service/configurationService';
+import { Product } from 'src/backend/modules/product/entity/product';
 
 export class SequelizeAdaptor implements OrmAdaptorInterface {
+
     protected adaptor: Sequelize;
 
     constructor(protected readonly configService: AppConfigService) {
-        let dbConfig = configService.getDbConfig();
+        const dbConfig = configService.getDbConfig();
         this.adaptor = new Sequelize(
             dbConfig.name,
             dbConfig.username,
