@@ -1,51 +1,50 @@
 version: '3'
 
 services:
-    node:
-        build:
-            context: ./dockerfiles/nodejs/
-            dockerfile: Dockerfile
-        image: fanneioz/sandbox/nodejs:latest
-        ports: 
-            - 3000:3000
-            - 30080:80
-            - 38080:8080
-        environment: 
-            - NODE_ENV=development
-        volumes: 
-            - .:/vagrant
-    postgres:
-        build:
-            context: ./dockerfiles/postgresql/
-            dockerfile: Dockerfile
-        image: fanneioz/sandbox/postgres:latest
-        links:
-            - node
-        environment: 
-            POSTGRES_PASSWORD: backend
-            POSTGRES_USER: backend
-            POSTGRES_DB: backend
-    mongo:
-        image: mongo:bionic
-        environment:
-            # TODO: Solve authentication error from adminer > mongo
-            MONGO_INITDB_ROOT_USERNAME: 'root'
-            MONGO_INITDB_ROOT_PASSWORD: 'example'
-        ports:
-            - 27017:27017
-        links:
-            - node
-    adminer:
-        build:
-            context: ./dockerfiles/adminer/
-            dockerfile: Dockerfile
-        image: fanneioz/sandbox/adminer:latest
-        links:
-            - postgres
-            - mongo
-        ports: 
-            - 10080:8080
-        environment:             
-            ADMINER_DESIGN: nette
-            ADMINER_DEFAULT_SERVER: postgres
-            
+  node:
+    build:
+      context: ./dockerfiles/nodejs/
+      dockerfile: Dockerfile
+    image: fanneioz/sandbox/nodejs:latest
+    ports:
+      - 3000:3000
+      - 30080:80
+      - 38080:8080
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - .:/vagrant
+  postgres:
+    build:
+      context: ./dockerfiles/postgresql/
+      dockerfile: Dockerfile
+    image: fanneioz/sandbox/postgres:latest
+    links:
+      - node
+    environment:
+      POSTGRES_PASSWORD: backend
+      POSTGRES_USER: backend
+      POSTGRES_DB: backend
+  mongo:
+    image: mongo:bionic
+    environment:
+      # TODO: Solve authentication error from adminer > mongo
+      MONGO_INITDB_ROOT_USERNAME: 'root'
+      MONGO_INITDB_ROOT_PASSWORD: 'example'
+    ports:
+      - 27017:27017
+    links:
+      - node
+  adminer:
+    build:
+      context: ./dockerfiles/adminer/
+      dockerfile: Dockerfile
+    image: fanneioz/sandbox/adminer:latest
+    links:
+      - postgres
+      - mongo
+    ports:
+      - 10080:8080
+    environment:
+      ADMINER_DESIGN: nette
+      ADMINER_DEFAULT_SERVER: postgres
