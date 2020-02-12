@@ -1,13 +1,16 @@
 import { ProductInterface } from './productInterface';
-import { AbstractModel } from 'src/backend/modules/database/adaptors/sequelize/abstractModel';
+import { AbstractModel } from 'src/backend/modules/database/adaptor/sequelize/abstractModel';
 import { DataTypes } from 'sequelize';
 import { ProductCategory } from './productCategory';
+import { Dinero as Money } from 'dinero.js';
+import MoneyFactory = require('dinero.js');
 
 export class Product extends AbstractModel implements ProductInterface {
-  protected id!: number;
-  protected name!: string;
-  protected active!: boolean;
-  protected productNumber!: string;
+  public id!: number;
+  public name!: string;
+  public active!: boolean;
+  public productNumber!: string;
+  public listingPrice!: Money;
   private readonly createdAt!: Date;
   private readonly updatedAt!: Date;
 
@@ -29,6 +32,18 @@ export class Product extends AbstractModel implements ProductInterface {
       },
       set(value: string) {
         this.setDataValue('name', value);
+      },
+    },
+    listingPrice: {
+      field: 'listing_price',
+      type: DataTypes.JSONB,
+      allowNull: false,
+      defaultValue: { amount: 0, currency: 'THB' },
+      get() {
+        return MoneyFactory(this.getDataValue('listingPrice'));
+      },
+      set(value: Money) {
+        this.setDataValue('listingPrice', value);
       },
     },
     active: {

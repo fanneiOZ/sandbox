@@ -1,4 +1,4 @@
-import { AbstractModel } from '../../database/adaptors/sequelize/abstractModel';
+import { AbstractModel } from '../../database/adaptor/sequelize/abstractModel';
 import { DataTypes } from 'sequelize';
 import { Product } from './product';
 

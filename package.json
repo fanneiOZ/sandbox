@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "@nestjs/cli": "^6.13.2",
+    "@types/dinero.js": "^1.6.2",
     "@nestjs/schematics": "^6.8.1",
     "@nestjs/testing": "^6.10.14",
     "@types/bluebird": "^3.5.29",
@@ -69,7 +70,8 @@
     "rxjs": "^6.5.4",
     "sequelize": "^5.21.4",
     "typeorm": "^0.2.22",
-    "sprintf-js": "^1.1.2"
+    "sprintf-js": "^1.1.2",
+    "dinero.js": "^1.6.0"
   },
   "jest": {
     "moduleFileExtensions": [
