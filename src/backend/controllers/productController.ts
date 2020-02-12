@@ -11,6 +11,7 @@ import {
 import { ProductService } from '../modules/product/service/productService';
 import { ProductCategoryService } from '../modules/product/service/productCategoryService';
 import { ProductCategory } from '../modules/product/entity/productCategory';
+import { Options as MoneyOptions } from 'dinero.js';
 
 @Controller('product')
 export class ProductController {
@@ -38,6 +39,7 @@ export class ProductController {
       name: string;
       productNumber: string;
       productCategory: { code?: string; id?: number };
+      listingPrice: MoneyOptions;
     },
   ) {
     let category: ProductCategory;
@@ -54,6 +56,7 @@ export class ProductController {
       req.name,
       req.productNumber,
       category.id,
+      req.listingPrice,
     );
   }
 
@@ -61,7 +64,6 @@ export class ProductController {
   @Header('Content-Type', 'application/json')
   async getById(@Param('id') id: string) {
     const product = await this.productService.findProductById(id);
-    // const category = await product.getProductCategory();
     return JSON.stringify([product]);
   }
 

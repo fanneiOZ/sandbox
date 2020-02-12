@@ -4,6 +4,8 @@ import { ProductNotFound } from '../error/productNotFound';
 import { Op } from 'sequelize';
 import { ProductCategory } from '../entity/productCategory';
 import { ProductCategoryService } from './productCategoryService';
+import { Options as MoneyOptions } from 'dinero.js';
+import MoneyFactory = require('dinero.js');
 
 @Injectable({ scope: Scope.REQUEST })
 export class ProductService {
@@ -20,11 +22,13 @@ export class ProductService {
     name: string,
     productNumber: string,
     categoryId: number,
+    listingPrice: MoneyOptions,
   ): Promise<Product> {
     return Product.build({
       name: name,
       productNumber: productNumber,
       categoryId: categoryId,
+      listingPrice: MoneyFactory(listingPrice),
     })
       .save()
       .then(data => {
