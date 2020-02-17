@@ -5,7 +5,7 @@ import { ConfigurationService } from './service/configurationService';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: './config/.application.env',      
+      envFilePath: './config/.application.env',
       isGlobal: true,
       expandVariables: true,
     }),
@@ -13,9 +13,9 @@ import { ConfigurationService } from './service/configurationService';
       envFilePath: './config/.dev.env',
       isGlobal: true,
       ignoreEnvVars: false,
-    })
+    }),
   ],
   providers: [ConfigurationService],
-  exports: [ConfigurationService]
+  exports: [ConfigurationService],
 })
 export class ConfigurationModule {}

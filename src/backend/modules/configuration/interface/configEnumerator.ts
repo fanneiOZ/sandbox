@@ -1,5 +1,7 @@
 export enum Config {
-  application,
-  db,
-  default,
+  APPLICATION = 'application',
+  DB = 'db',
+  SECURITY = 'security',
+  CACHE = 'cache',
+  DEFAULT = 'default',
 }

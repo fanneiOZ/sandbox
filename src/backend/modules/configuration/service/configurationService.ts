@@ -4,6 +4,8 @@ import { Injectable } from '@nestjs/common';
 import { ConfigurationInterface } from '../interface/configurationInterface';
 import { Config } from '../interface/configEnumerator';
 import { AppConfig } from '../interface/appConfig';
+import { SecurityConfig } from '../interface/securityConfig';
+import { CacheConfig } from '../interface/cacheConfig';
 
 @Injectable()
 export class ConfigurationService extends ConfigService {
@@ -11,12 +13,16 @@ export class ConfigurationService extends ConfigService {
     super(internalConfig);
   }
 
-  public resolve(name: Config): ConfigurationInterface {
+  public resolve(name: string): ConfigurationInterface {
     switch (name) {
-      case Config.application:
+      case Config.APPLICATION.toString():
         return this.getApplicationConfig();
-      case Config.db:
+      case Config.DB.toString():
         return this.getDbConfig();
+      case Config.SECURITY.toString():
+        return this.getSecurityConfig();
+      case Config.CACHE.toString():
+        return this.getCacheConfig();
       default:
         throw new Error('Configuration not found');
     }
@@ -33,6 +39,17 @@ export class ConfigurationService extends ConfigService {
       this.get('DB_NAME'),
       this.get('DB_USER'),
       this.get('DB_PASSWORD'),
+    );
+  }
+
+  private getSecurityConfig(): SecurityConfig {
+    return new SecurityConfig(this.get('crypto.secretKey'));
+  }
+
+  private getCacheConfig(): CacheConfig {
+    return new CacheConfig(
+      this.get('redis.host'),
+      this.get('redis.port') as number,
     );
   }
 }

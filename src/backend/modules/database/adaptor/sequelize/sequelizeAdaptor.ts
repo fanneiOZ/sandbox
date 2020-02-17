@@ -3,14 +3,13 @@ import { OrmAdaptorInterface } from '../ormAdaptorInterface';
 import { ConfigurationService } from 'src/backend/modules/configuration/service/configurationService';
 import { Product } from 'src/backend/modules/product/entity/product';
 import { ProductCategory } from 'src/backend/modules/product/entity/productCategory';
-import { Config } from 'src/backend/modules/configuration/interface/configEnumerator';
 import { DbConfig } from 'src/backend/modules/configuration/interface/dbConfig';
 
 export class SequelizeAdaptor implements OrmAdaptorInterface {
   protected adaptor: Sequelize;
 
   constructor(protected readonly configService: ConfigurationService) {
-    const dbConfig = configService.resolve(Config.db) as DbConfig;
+    const dbConfig = configService.resolve('db') as DbConfig;
     this.adaptor = new Sequelize(
       dbConfig.name,
       dbConfig.username,
