@@ -35,6 +35,10 @@ services:
       - 27017:27017
     links:
       - node
+  redis:
+    image: redis:alpine3.11
+    links:
+      - node
   adminer:
     build:
       context: ./dockerfiles/adminer/

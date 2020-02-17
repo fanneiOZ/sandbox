@@ -1,5 +1,5 @@
 import { Controller, Post, Body, HttpCode, Header } from '@nestjs/common';
-import { ProductCategoryService } from '../modules/product/service/productCategoryService';
+import { ProductCategoryService } from '../service/productCategoryService';
 
 @Controller('product/category')
 export class ProductCategoryController {
