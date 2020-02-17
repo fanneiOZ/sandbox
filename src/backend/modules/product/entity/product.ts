@@ -14,8 +14,8 @@ export class Product extends AbstractModel implements ProductInterface {
   private readonly createdAt!: Date;
   private readonly updatedAt!: Date;
 
-  public static readonly tableName = 'products';
-  public static readonly modelAttributes = {
+  public readonly tableName = 'products';
+  public readonly modelAttributes = {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -79,7 +79,7 @@ export class Product extends AbstractModel implements ProductInterface {
     },
   };
 
-  public static associateModel(): void {
+  public associateModel(): void {
     Product.belongsTo(ProductCategory, { foreignKey: 'categoryId' });
   }
 

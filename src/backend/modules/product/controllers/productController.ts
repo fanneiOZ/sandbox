@@ -8,9 +8,9 @@ import {
   Body,
   Delete,
 } from '@nestjs/common';
-import { ProductService } from '../modules/product/service/productService';
-import { ProductCategoryService } from '../modules/product/service/productCategoryService';
-import { ProductCategory } from '../modules/product/entity/productCategory';
+import { ProductService } from '../service/productService';
+import { ProductCategoryService } from '../service/productCategoryService';
+import { ProductCategory } from '../entity/productCategory';
 import { Options as MoneyOptions } from 'dinero.js';
 
 @Controller('product')

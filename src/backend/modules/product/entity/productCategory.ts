@@ -2,14 +2,13 @@ import { AbstractModel } from '../../database/adaptor/sequelize/abstractModel';
 import { DataTypes } from 'sequelize';
 import { Product } from './product';
 
-const enum a {}
 export class ProductCategory extends AbstractModel {
   public id!: number;
   public code!: string;
   public label!: string;
 
-  public static readonly tableName = 'product_categories';
-  public static readonly modelAttributes = {
+  public readonly tableName = 'product_categories';
+  public readonly modelAttributes = {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -46,7 +45,7 @@ export class ProductCategory extends AbstractModel {
     },
   };
 
-  public static associateModel(): void {
+  public associateModel(): void {
     ProductCategory.hasMany(Product, {
       as: 'Product',
       onDelete: 'RESTRICT',
