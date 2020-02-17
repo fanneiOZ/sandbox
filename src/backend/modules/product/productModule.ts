@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
-import { ProductController } from 'src/backend/controllers/productController';
-import { ProductService } from './service/productService';
 import { DatabaseModule } from '../database/databaseModule';
-import { ProductCategoryController } from 'src/backend/controllers/productCategoryController';
+
+import { ProductController } from './controllers/productController';
+import { ProductCategoryController } from './controllers/productCategoryController';
 import { ProductCategoryService } from './service/productCategoryService';
+import { ProductService } from './service/productService';
 
 @Module({
   imports: [DatabaseModule],
