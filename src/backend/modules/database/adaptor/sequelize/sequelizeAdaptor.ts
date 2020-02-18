@@ -53,6 +53,7 @@ export class SequelizeAdaptor implements OrmAdaptorInterface {
     User.init(User.modelAttributes, this.getInitOptions(User.tableName));
 
     [ProductCategory, Product].forEach(model => {
+      console.log('associate', model);
       model.associateModel();
     });
   }

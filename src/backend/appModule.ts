@@ -5,6 +5,7 @@ import { DatabaseModule } from './modules/database/databaseModule';
 import { CryptoModule } from './modules/crypto/cryptoModule';
 import { QueueModule } from './modules/queue/queueModule';
 import { UserModule } from './modules/user/userModule';
+import { AuthenticationModule } from './modules/authentication/authenticationModule';
 
 @Module({
   imports: [
@@ -13,7 +14,8 @@ import { UserModule } from './modules/user/userModule';
     DatabaseModule,
     CryptoModule,
     QueueModule,
-    UserModule
+    UserModule,
+    AuthenticationModule
   ],
 })
 export class AppModule {}

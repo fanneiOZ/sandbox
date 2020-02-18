@@ -19,11 +19,17 @@ export class UserService {
       });
   }
 
+  public findByEmail(email: string): Promise<User> {
+    return User.findOne({
+      where: { email: { [Op.eq]: email } },
+    });
+  }
+
   public validate(user: UserInterface): Promise<User> {
     return User.findOne({
       where: {
         email: { [Op.eq]: user.email },
-        password: { [Op.eq]: user.password }
+        password: { [Op.eq]: user.password },
       },
     });
   }
