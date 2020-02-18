@@ -4,6 +4,7 @@ import { ConfigurationService } from 'src/backend/modules/configuration/service/
 import { Product } from 'src/backend/modules/product/entity/product';
 import { ProductCategory } from 'src/backend/modules/product/entity/productCategory';
 import { DbConfig } from 'src/backend/modules/configuration/interface/dbConfig';
+import { User } from 'src/backend/modules/user/model/user';
 
 export class SequelizeAdaptor implements OrmAdaptorInterface {
   protected adaptor: Sequelize;
@@ -49,6 +50,7 @@ export class SequelizeAdaptor implements OrmAdaptorInterface {
       ProductCategory.modelAttributes,
       this.getInitOptions(ProductCategory.tableName),
     );
+    User.init(User.modelAttributes, this.getInitOptions(User.tableName));
 
     [ProductCategory, Product].forEach(model => {
       model.associateModel();
