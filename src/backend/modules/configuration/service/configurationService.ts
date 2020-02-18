@@ -43,7 +43,14 @@ export class ConfigurationService extends ConfigService {
   }
 
   private getSecurityConfig(): SecurityConfig {
-    return new SecurityConfig(this.get('crypto.secretKey'));
+    const defaultOptions = this.get('jwt.default.signOptions.expiresIn')
+      ? { expiresIn: this.get('jwt.default.signOptions.expiresIn') }
+      : null;
+    const jwt = {
+      secretKey: this.get('jwt.secretKey'),
+      defaultOptions: defaultOptions,
+    };
+    return new SecurityConfig(this.get('crypto.secretKey'), jwt);
   }
 
   private getCacheConfig(): CacheConfig {

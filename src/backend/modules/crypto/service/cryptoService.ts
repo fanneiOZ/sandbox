@@ -9,7 +9,7 @@ export class CryptoService {
   constructor(readonly configurationService: ConfigurationService) {
     this.secretKey = (configurationService.resolve(
       'security',
-    ) as SecurityConfig).secretKey;
+    ) as SecurityConfig).encryptedKey;
   }
 
   public encrypt(value: string): string {
