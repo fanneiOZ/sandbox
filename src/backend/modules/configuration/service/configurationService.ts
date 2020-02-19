@@ -6,6 +6,7 @@ import { Config } from '../interface/configEnumerator';
 import { AppConfig } from '../interface/appConfig';
 import { SecurityConfig } from '../interface/securityConfig';
 import { CacheConfig } from '../interface/cacheConfig';
+import { JwtModuleOptions } from '@nestjs/jwt';
 
 @Injectable()
 export class ConfigurationService extends ConfigService {
@@ -46,9 +47,9 @@ export class ConfigurationService extends ConfigService {
     const defaultOptions = this.get('jwt.default.signOptions.expiresIn')
       ? { expiresIn: this.get('jwt.default.signOptions.expiresIn') }
       : null;
-    const jwt = {
-      secretKey: this.get('jwt.secretKey'),
-      defaultOptions: defaultOptions,
+    const jwt: JwtModuleOptions = {
+      secret: this.get('jwt.secretKey'),
+      signOptions: defaultOptions,
     };
     return new SecurityConfig(this.get('crypto.secretKey'), jwt);
   }
