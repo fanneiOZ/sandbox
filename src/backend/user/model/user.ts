@@ -33,7 +33,7 @@ export class User extends AbstractModel implements UserInterface {
       },
       set(value: string) {
         this.setDataValue('password', value);
-      }
+      },
     },
     email: {
       type: new DataTypes.STRING(150),

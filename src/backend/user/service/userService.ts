@@ -1,7 +1,9 @@
 import { User } from '../model/user';
 import { UserInterface } from '../interface/userInterface';
 import { Injectable } from '@nestjs/common';
-import { Op } from 'sequelize';
+import { Op, WhereOptions } from 'sequelize';
+
+export type ValidationStrategy = 'password' | 'jwt' | 'oauth';
 
 @Injectable()
 export class UserService {
@@ -25,13 +27,31 @@ export class UserService {
     });
   }
 
-  public validate(user: UserInterface): Promise<User> {
-    return User.findOne({
-      where: {
-        email: { [Op.eq]: user.email },
-        password: { [Op.eq]: user.password },
-      },
-    });
+  public validate(
+    validationType: ValidationStrategy,
+    user: UserInterface,
+  ): Promise<User> {
+    let whereCondition: WhereOptions;
+
+    switch (validationType) {
+      case 'password':
+        whereCondition = {
+          [Op.and]: {
+            email: { [Op.eq]: user.email },
+          },
+        };
+        break;
+      case 'jwt':
+        whereCondition = {
+          [Op.and]: {
+            id: { [Op.eq]: user.id },
+            email: { [Op.eq]: user.email },
+            password: { [Op.eq]: user.password },
+          },
+        };
+        break;
+    }
+    return User.findOne({ where: whereCondition });
   }
 
   public buildUser(userOptions: UserInterface): User {

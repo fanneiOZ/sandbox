@@ -12,12 +12,14 @@ import { SecretKeyProvider } from '../service/secretKeyProvider';
   ],
 })
 export class SetupJwtModule extends JwtModule {
-  private static readonly jwtModuleOptions = new SecretKeyProvider(new ConfigurationService()).jwtModuleOptions;
-  
+  private static readonly jwtModuleOptions = new SecretKeyProvider(
+    new ConfigurationService(),
+  ).jwtModuleOptions;
+
   public static setup(): DynamicModule {
     return this.register({
       secret: this.jwtModuleOptions.secret,
-      signOptions: this.jwtModuleOptions.signOptions
+      signOptions: this.jwtModuleOptions.signOptions,
     });
   }
 }

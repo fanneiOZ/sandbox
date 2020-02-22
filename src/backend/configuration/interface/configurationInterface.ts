@@ -9,4 +9,3 @@ export type configurationName =
 export interface ConfigurationInterface {
   name: configurationName;
 }
-

@@ -14,7 +14,7 @@ import { JwtStrategy } from './strategy/jwtStrategy';
 
 @Module({
   imports: [
-    PassportModule,
+    PassportModule.register({ defaultStrategy: 'jwt' }),
     UserModule,
     CryptoModule,
     SetupJwtModule.setup(),
@@ -26,7 +26,7 @@ import { JwtStrategy } from './strategy/jwtStrategy';
     SecretKeyProvider,
     LocalStrategy,
     GoogleOAuthStrategy,
-    JwtStrategy
+    JwtStrategy,
   ],
 })
 export class AuthenticationModule {}

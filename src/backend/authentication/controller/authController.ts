@@ -1,4 +1,12 @@
-import { Controller, Post, Request, UseGuards, Header, Get } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Request,
+  UseGuards,
+  Header,
+  Get,
+  Response,
+} from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthenticationService } from '../service/authenicationService';
 
@@ -10,12 +18,14 @@ export class AuthController {
   @Post('login')
   @Header('Content-Type', 'application/json')
   public login(@Request() req) {
-    return this.authService.assignJwtToken(req.user);
+    return { token: this.authService.assignJwtToken(req.user) };
   }
 
   @UseGuards(AuthGuard('jwt'))
   @Get('login/jwt')
-  public loginJwt(@Request() req) {
-    return req.user;
+  public loginJwt(@Request() req, @Response() res) {
+    res.setHeader('token-user-id', req.user.id);
+    res.setHeader('token-user-email', req.user.email);
+    return res.send({ status: 'logged in' });
   }
 }

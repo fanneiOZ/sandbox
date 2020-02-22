@@ -5,9 +5,14 @@ import { ProductCategoryController } from './controllers/productCategoryControll
 import { ProductCategoryService } from './service/productCategoryService';
 import { ProductService } from './service/productService';
 import { QueueModule } from '../queue/queueModule';
+import { PassportModule } from '@nestjs/passport';
 
 @Module({
-  imports: [DatabaseModule, QueueModule.register('product')],
+  imports: [
+    DatabaseModule,
+    QueueModule.register('product'),
+    PassportModule.register({ defaultStrategy: 'jwt' })
+  ],
   controllers: [ProductController, ProductCategoryController],
   providers: [ProductService, ProductCategoryService],
 })

@@ -42,14 +42,14 @@ export class SequelizeAdaptor implements OrmAdaptorInterface {
   }
 
   public initialize(): void {
-    Product.init(Product.modelAttributes, {
-      sequelize: this.adaptor,
-      tableName: Product.tableName,
-    });
-    ProductCategory.init(ProductCategory.modelAttributes, {
-      sequelize: this.adaptor,
-      tableName: ProductCategory.tableName,
-    });
+    Product.init(
+      Product.modelAttributes,
+      this.getInitOptions(Product.tableName),
+    );
+    ProductCategory.init(
+      ProductCategory.modelAttributes,
+      this.getInitOptions(ProductCategory.tableName),
+    );
     User.init(User.modelAttributes, this.getInitOptions(User.tableName));
 
     Product.associateModel();

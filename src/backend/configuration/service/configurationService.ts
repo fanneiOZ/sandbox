@@ -1,15 +1,13 @@
 import { ConfigService } from '@nestjs/config';
 import { DbConfig } from '../interface/dbConfig';
 import { Injectable } from '@nestjs/common';
-import {
-  ConfigurationInterface,
-  configurationName,
-} from '../interface/configurationInterface';
+import { configurationName } from '../interface/configurationInterface';
 import { AppConfig } from '../interface/appConfig';
 import { SecurityConfig } from '../interface/securityConfig';
 import { CacheConfig } from '../interface/cacheConfig';
 import { JwtModuleOptions } from '@nestjs/jwt';
 import { HttpConfig } from '../interface/httpConfig';
+import { StrategyOptions as GoogleOptions } from 'passport-google-oauth20';
 
 @Injectable()
 export class ConfigurationService extends ConfigService {
@@ -17,9 +15,7 @@ export class ConfigurationService extends ConfigService {
     super(internalConfig);
   }
 
-  public resolve(
-    name: configurationName,
-  ): any {
+  public resolve(name: configurationName): any {
     switch (name) {
       case 'application':
         return this.getApplicationConfig();
@@ -58,7 +54,11 @@ export class ConfigurationService extends ConfigService {
       secret: this.get('jwt.secretKey'),
       signOptions: defaultOptions,
     };
-    return new SecurityConfig(this.get('crypto.secretKey'), jwt);
+    const googleOptions: GoogleOptions = {
+      clientID: this.get('google.clientId'),
+      clientSecret: this.get('google.clientSecret'),
+    };
+    return new SecurityConfig(this.get('crypto.secretKey'), jwt, googleOptions);
   }
 
   private getCacheConfig(): CacheConfig {

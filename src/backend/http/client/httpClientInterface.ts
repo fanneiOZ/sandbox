@@ -1,1 +1,1 @@
-export type httpClientName = 'http' | ''
+export type httpClientName = 'http' | '';

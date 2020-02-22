@@ -13,7 +13,7 @@ export class UserController {
     private readonly crytoService: CryptoService,
   ) {}
 
-  @Post('create\/local')
+  @Post('create/local')
   public async createLocalUser(
     @Body() req: { email: string; name: PersonNameInterface; password: string },
   ): Promise<any> {

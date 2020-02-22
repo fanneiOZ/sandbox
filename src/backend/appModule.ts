@@ -15,7 +15,7 @@ import { AuthenticationModule } from './authentication/authenticationModule';
     CryptoModule,
     QueueModule,
     UserModule,
-    AuthenticationModule
+    AuthenticationModule,
   ],
 })
 export class AppModule {}

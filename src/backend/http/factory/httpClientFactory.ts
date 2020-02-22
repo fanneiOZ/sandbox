@@ -7,11 +7,11 @@ import { httpClientName } from '../client/httpClientInterface';
 export class HttpClientFactory {
   constructor(private readonly configService: ConfigurationService) {}
 
-  public create(client: httpClientName) {    
+  public create(client: httpClientName) {
     const config: ConfigurationInterface = this.configService.resolve('http');
     switch (client) {
       default:
-        // TODO: add httpClient 
+        // TODO: add httpClient
         return config;
     }
   }

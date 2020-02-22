@@ -7,11 +7,13 @@ import {
   HttpCode,
   Body,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 import { ProductService } from '../service/productService';
 import { ProductCategoryService } from '../service/productCategoryService';
 import { ProductCategory } from '../entity/productCategory';
 import { Options as MoneyOptions } from 'dinero.js';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('product')
 export class ProductController {
@@ -23,6 +25,7 @@ export class ProductController {
     private productCategoryService: ProductCategoryService,
   ) {}
 
+  // @UseGuards(AuthGuard('jwt'))
   @Get('all')
   @Header('Content-Type', 'application/json')
   async getAll() {
