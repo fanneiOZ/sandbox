@@ -1,5 +1,5 @@
 import { ProductInterface } from './productInterface';
-import { AbstractModel } from 'src/backend/modules/database/adaptor/sequelize/abstractModel';
+import { AbstractModel } from '../../database/adaptor/sequelize/abstractModel';
 import { DataTypes } from 'sequelize';
 import { ProductCategory } from './productCategory';
 import { Dinero as Money } from 'dinero.js';
@@ -14,8 +14,8 @@ export class Product extends AbstractModel implements ProductInterface {
   private readonly createdAt!: Date;
   private readonly updatedAt!: Date;
 
-  public readonly tableName = 'products';
-  public readonly modelAttributes = {
+  public static readonly tableName = 'products';
+  public static readonly modelAttributes = {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -74,12 +74,14 @@ export class Product extends AbstractModel implements ProductInterface {
     },
     categoryId: {
       field: 'category_id',
-      references: { model: 'ProductCategories' },
+      references: {
+        model: 'ProductCategories',
+      },
       type: DataTypes.INTEGER,
     },
   };
 
-  public associateModel(): void {
+  public static associateModel(): void {
     Product.belongsTo(ProductCategory, { foreignKey: 'categoryId' });
   }
 

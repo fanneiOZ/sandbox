@@ -1,12 +1,15 @@
 import { ConfigService } from '@nestjs/config';
 import { DbConfig } from '../interface/dbConfig';
 import { Injectable } from '@nestjs/common';
-import { ConfigurationInterface } from '../interface/configurationInterface';
-import { Config } from '../interface/configEnumerator';
+import {
+  ConfigurationInterface,
+  configurationName,
+} from '../interface/configurationInterface';
 import { AppConfig } from '../interface/appConfig';
 import { SecurityConfig } from '../interface/securityConfig';
 import { CacheConfig } from '../interface/cacheConfig';
 import { JwtModuleOptions } from '@nestjs/jwt';
+import { HttpConfig } from '../interface/httpConfig';
 
 @Injectable()
 export class ConfigurationService extends ConfigService {
@@ -14,16 +17,20 @@ export class ConfigurationService extends ConfigService {
     super(internalConfig);
   }
 
-  public resolve(name: string): ConfigurationInterface {
+  public resolve(
+    name: configurationName,
+  ): any {
     switch (name) {
-      case Config.APPLICATION.toString():
+      case 'application':
         return this.getApplicationConfig();
-      case Config.DB.toString():
+      case 'db':
         return this.getDbConfig();
-      case Config.SECURITY.toString():
+      case 'security':
         return this.getSecurityConfig();
-      case Config.CACHE.toString():
+      case 'cache':
         return this.getCacheConfig();
+      case 'http':
+        return new HttpConfig();
       default:
         throw new Error('Configuration not found');
     }

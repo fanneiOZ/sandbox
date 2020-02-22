@@ -2,7 +2,8 @@ import { JwtModule } from '@nestjs/jwt';
 import { Module, forwardRef, DynamicModule } from '@nestjs/common';
 import { ConfigurationModule } from '../../configuration/configurationModule';
 import { ConfigurationService } from '../../configuration/service/configurationService';
-import { SecurityConfig } from '../../configuration/interface/securityConfig';
+import { SecretKeyProvider } from '../service/secretKeyProvider';
+
 @Module({
   imports: [
     forwardRef(() => {
@@ -11,13 +12,12 @@ import { SecurityConfig } from '../../configuration/interface/securityConfig';
   ],
 })
 export class SetupJwtModule extends JwtModule {
-  private static readonly jwtConfig = new ConfigurationService().resolve(
-    'security',
-  ) as SecurityConfig;
+  private static readonly jwtModuleOptions = new SecretKeyProvider(new ConfigurationService()).jwtModuleOptions;
+  
   public static setup(): DynamicModule {
     return this.register({
-      secret: this.jwtConfig.jwt.secret,
-      signOptions: this.jwtConfig.jwt.signOptions
+      secret: this.jwtModuleOptions.secret,
+      signOptions: this.jwtModuleOptions.signOptions
     });
   }
 }

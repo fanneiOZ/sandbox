@@ -75,6 +75,7 @@
     "@nestjs/platform-express": "^6.10.14",
     "@nestjs/typeorm": "^6.2.0",
     "@types/mongoose": "^5.7.1",
+    "@types/passport-jwt": "^3.0.3",
     "axios": "^0.19.2",
     "bull": "^3.13.0",
     "crypto-js": "^4.0.0",

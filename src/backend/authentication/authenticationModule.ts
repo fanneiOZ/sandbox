@@ -9,6 +9,7 @@ import { ConfigurationModule } from '../configuration/configurationModule';
 import { SetupJwtModule } from './module/jwtModule';
 import { GoogleOAuthStrategy } from './strategy/googleOAuthStrategy';
 import { OAuthController } from './controller/oAuthController';
+import { SecretKeyProvider } from './service/secretKeyProvider';
 
 @Module({
   imports: [
@@ -19,6 +20,11 @@ import { OAuthController } from './controller/oAuthController';
     ConfigurationModule,
   ],
   controllers: [AuthController, OAuthController],
-  providers: [AuthenticationService, LocalStrategy, GoogleOAuthStrategy],
+  providers: [
+    AuthenticationService,
+    SecretKeyProvider,
+    LocalStrategy,
+    GoogleOAuthStrategy,
+  ],
 })
 export class AuthenticationModule {}

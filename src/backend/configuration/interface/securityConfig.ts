@@ -2,9 +2,9 @@ import { ConfigurationInterface } from './configurationInterface';
 import { JwtModuleOptions } from '@nestjs/jwt';
 
 export class SecurityConfig implements ConfigurationInterface {
-  public name = 'security';
+  public name: 'security';
   constructor(
     readonly encryptedKey: string,
-    readonly jwt: JwtModuleOptions
+    readonly jwtModuleOptions: JwtModuleOptions
   ) {}
 }

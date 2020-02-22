@@ -7,8 +7,8 @@ export class ProductCategory extends AbstractModel {
   public code!: string;
   public label!: string;
 
-  public readonly tableName = 'product_categories';
-  public readonly modelAttributes = {
+  public static readonly tableName = 'product_categories';
+  public static readonly modelAttributes = {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -45,9 +45,9 @@ export class ProductCategory extends AbstractModel {
     },
   };
 
-  public associateModel(): void {
+  public static associateModel(): void {
     ProductCategory.hasMany(Product, {
-      as: 'Product',
+      as: 'product',
       onDelete: 'RESTRICT',
       foreignKey: { name: 'categoryId', allowNull: true },
     });
