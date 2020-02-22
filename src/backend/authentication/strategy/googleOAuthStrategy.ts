@@ -16,6 +16,7 @@ export class GoogleOAuthStrategy extends PassportStrategy(Strategy, 'google') {
   }
 
   public async validate(@Request() req): Promise<any> {
+    
     this.authenticate(req);    
   }
 }

@@ -1,4 +1,4 @@
-import { Controller, Post, Request, UseGuards, Header } from '@nestjs/common';
+import { Controller, Post, Request, UseGuards, Header, Get } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthenticationService } from '../service/authenicationService';
 
@@ -11,5 +11,11 @@ export class AuthController {
   @Header('Content-Type', 'application/json')
   public login(@Request() req) {
     return this.authService.assignJwtToken(req.user);
+  }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Get('login/jwt')
+  public loginJwt(@Request() req) {
+    return req.user;
   }
 }

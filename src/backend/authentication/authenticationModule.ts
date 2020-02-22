@@ -10,6 +10,7 @@ import { SetupJwtModule } from './module/jwtModule';
 import { GoogleOAuthStrategy } from './strategy/googleOAuthStrategy';
 import { OAuthController } from './controller/oAuthController';
 import { SecretKeyProvider } from './service/secretKeyProvider';
+import { JwtStrategy } from './strategy/jwtStrategy';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { SecretKeyProvider } from './service/secretKeyProvider';
     SecretKeyProvider,
     LocalStrategy,
     GoogleOAuthStrategy,
+    JwtStrategy
   ],
 })
 export class AuthenticationModule {}

@@ -4,7 +4,8 @@ import { UserService } from '../../user/service/userService';
 import { CryptoService } from '../../crypto/service/cryptoService';
 import { User } from '../../user/model/user';
 import { JwtPayloadInterface } from '../interface/jwtPayloadInterface';
-import { UserInterface } from '../../user/interface/userInterface';
+import { Op } from 'sequelize';
+import { UserInterface } from 'src/backend/user/interface/userInterface';
 
 @Injectable()
 export class AuthenticationService {
@@ -27,6 +28,22 @@ export class AuthenticationService {
     });
   }
 
+  public validateByJwt(token: string) {
+    const payload = this.jwtService.decode(token) as UserInterface;
+    return User.count({
+      where: {
+        id: { [Op.eq]: payload.id },
+        email: { [Op.eq]: payload.email },
+      },
+    }).then(data => {
+      if (!data) {
+        return payload;
+      } else {
+        return null;
+      }
+    });
+  }
+
   public assignJwtToken(user: UserInterface) {
     const payload: JwtPayloadInterface = {
       user: {
@@ -34,6 +51,6 @@ export class AuthenticationService {
         username: user.email,
       },
     };
-    return { 'access_token': this.jwtService.sign(payload) };
+    return this.jwtService.sign(payload);
   }
 }
