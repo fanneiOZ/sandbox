@@ -111,3 +111,4 @@ dist
 data/
 
 .vscode/
+config/.dev.env
