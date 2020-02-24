@@ -14,7 +14,7 @@ import { JwtStrategy } from './strategy/jwtStrategy';
 
 @Module({
   imports: [
-    PassportModule.register({ defaultStrategy: 'jwt' }),
+    PassportModule,
     UserModule,
     CryptoModule,
     SetupJwtModule.setup(),

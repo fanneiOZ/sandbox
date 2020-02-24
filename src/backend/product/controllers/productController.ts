@@ -15,6 +15,7 @@ import { ProductCategory } from '../entity/productCategory';
 import { Options as MoneyOptions } from 'dinero.js';
 import { AuthGuard } from '@nestjs/passport';
 
+@UseGuards(AuthGuard())
 @Controller('product')
 export class ProductController {
   /**
@@ -25,7 +26,6 @@ export class ProductController {
     private productCategoryService: ProductCategoryService,
   ) {}
 
-  // @UseGuards(AuthGuard('jwt'))
   @Get('all')
   @Header('Content-Type', 'application/json')
   async getAll() {

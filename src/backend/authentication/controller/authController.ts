@@ -10,6 +10,7 @@ import {
 import { AuthGuard } from '@nestjs/passport';
 import { AuthenticationService } from '../service/authenicationService';
 
+
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthenticationService) {}
@@ -27,5 +28,10 @@ export class AuthController {
     res.setHeader('token-user-id', req.user.id);
     res.setHeader('token-user-email', req.user.email);
     return res.send({ status: 'logged in' });
+  }
+
+  @Get('test')
+  public test() {
+    return 'logged in';
   }
 }
