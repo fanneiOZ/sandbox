@@ -5,11 +5,7 @@ services:
     build:
       context: ./dockerfiles/nodejs/
       dockerfile: Dockerfile
-    image: fanneioz/sandbox/nodejs:latest
-    ports:
-      - 3000:3000
-      - 30080:80
-      - 38080:8080
+    image: fanneioz/sandbox/nodejs:latest    
     environment:
       - NODE_ENV=development
     volumes:
@@ -30,9 +26,7 @@ services:
     environment:
       # TODO: Solve authentication error from adminer > mongo
       MONGO_INITDB_ROOT_USERNAME: 'root'
-      MONGO_INITDB_ROOT_PASSWORD: 'example'
-    ports:
-      - 27017:27017
+      MONGO_INITDB_ROOT_PASSWORD: 'example'    
     links:
       - node
   redis:
@@ -46,9 +40,17 @@ services:
     image: fanneioz/sandbox/adminer:latest
     links:
       - postgres
-      - mongo
-    ports:
-      - 10080:8080
+      - mongo    
     environment:
       ADMINER_DESIGN: nette
       ADMINER_DEFAULT_SERVER: postgres
+  nginx:
+    build:
+      context: ./dockerfiles/nginx/
+      dockerfile: Dockerfile
+    image: fanneioz/sandbox/nginx:latest
+    links:
+      - node
+      - adminer
+    ports: 
+      - 80:80
