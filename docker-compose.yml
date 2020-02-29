@@ -54,3 +54,5 @@ services:
       - adminer
     ports: 
       - 80:80
+    volumes:
+      - .:/var/www/root
