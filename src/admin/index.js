@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { renderSignInPage } from './containers/signInContainer';
+import { SignInContainer } from './authentication';
 
-const signInPage = renderSignInPage({ defaultText: 'test'});
+const signInPage = SignInContainer({ title: 'Sandbox Experiment' });
 ReactDOM.render([signInPage], document.getElementById('root'));
