@@ -32,6 +32,7 @@
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.8.4",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/preset-env": "^7.8.4",
     "@babel/preset-react": "^7.8.3",
     "@nestjs/cli": "^6.13.2",
@@ -78,6 +79,8 @@
   },
   "dependencies": {
     "@hapi/joi": "^17.1.0",
+    "@material-ui/core": "^4.9.5",
+    "@material-ui/icons": "^4.9.1",
     "@nestjs/bull": "0.0.2",
     "@nestjs/common": "^6.10.14",
     "@nestjs/config": "^0.2.2",
