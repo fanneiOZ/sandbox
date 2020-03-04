@@ -17,7 +17,7 @@ export class GoogleOAuthStrategy extends PassportStrategy(Strategy, 'google') {
         clientSecret: keyProvider.googleOptions.clientSecret,
         callbackURL: 'http://localhost:3000/oauth/google/verify',
         scope: ['profile'],
-        accessType: 'online'
+        accessType: 'online',
       },
       function(
         accessToken: string,
@@ -34,9 +34,8 @@ export class GoogleOAuthStrategy extends PassportStrategy(Strategy, 'google') {
     // const options: AuthenticateOptionsGoogle = {
     //   accessType: 'online'
     // };
-
     // this.authenticate(req, options);
-    // const getProfile = this.userProfile(req.query.code, (err, profile) => {      
+    // const getProfile = this.userProfile(req.query.code, (err, profile) => {
     //   return profile;
     // });
     // console.log('authenticated');

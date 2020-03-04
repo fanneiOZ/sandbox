@@ -11,7 +11,7 @@ import { PassportModule } from '@nestjs/passport';
   imports: [
     DatabaseModule,
     QueueModule.register('product'),
-    PassportModule.register({defaultStrategy: 'jwt'})
+    PassportModule.register({ defaultStrategy: 'jwt' }),
   ],
   controllers: [ProductController, ProductCategoryController],
   providers: [ProductService, ProductCategoryService],

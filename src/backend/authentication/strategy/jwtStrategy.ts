@@ -21,7 +21,10 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 
   public async validate(@Request() req): Promise<any> {
     const contextId = ContextIdFactory.getByRequest(req);
-    const authService = await this.moduleRef.resolve(AuthenticationService, contextId);
+    const authService = await this.moduleRef.resolve(
+      AuthenticationService,
+      contextId,
+    );
     const jwt = req.headers.authorization.match(/Bearer\s(\S*)/)[1];
     const user = await authService.validateByJwt(jwt);
     if (!user) {

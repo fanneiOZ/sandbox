@@ -10,7 +10,6 @@ import {
 import { AuthGuard } from '@nestjs/passport';
 import { AuthenticationService } from '../service/authenicationService';
 
-
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthenticationService) {}

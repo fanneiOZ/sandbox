@@ -13,9 +13,7 @@ export class OAuthController {
   }
 
   @Get('google/verify')
-  public verify(
-    @Request() req
-  ) {
+  public verify(@Request() req) {
     // const a = {
     //   query: req.query,
     //   accessToken: accessToken,
