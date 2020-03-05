@@ -4,11 +4,12 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: '100%',
     marginTop: theme.spacing(1),
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+    alignContent: 'right',
   },
 }));
 
@@ -28,6 +29,7 @@ export default function LoginForm(props) {
         fullWidth
         id="email"
         label="Email Address"
+        placeholder="email@fanneioz-sandbox.io"
         name="email"
         autoComplete="email"
         autoFocus
@@ -43,7 +45,7 @@ export default function LoginForm(props) {
         id="password"
         autoComplete="current-password"
       />
-      <Button variant="contained" color="primary" className={classes.submit}>
+      <Button variant="outlined" color="secondary" size="large" className={classes.submit}>
         {'Login'}
       </Button>
     </form>

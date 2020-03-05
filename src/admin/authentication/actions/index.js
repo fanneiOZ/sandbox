@@ -1,3 +1,3 @@
 import * as SignInActions from './signInActions';
-
-export { SignInActions };
+import * as UserActions from './userActions';
+export { SignInActions, UserActions };

@@ -1,4 +1,4 @@
-import { Controller, Body, Post } from '@nestjs/common';
+import { Controller, Body, Post, Get, Query } from '@nestjs/common';
 import { UserInterface } from '../interface/userInterface';
 import { UserService } from '../service/userService';
 import { User } from '../model/user';
@@ -30,5 +30,10 @@ export class UserController {
     };
     const userInstance: User = this.userService.buildUser(userOptions);
     return await this.userService.saveUser(userInstance);
+  }
+
+  @Get()
+  public async getUser(@Query('email') email: string): Promise<any> {
+    return (await this.userService.findByEmail(email)) ?? {};    
   }
 }
