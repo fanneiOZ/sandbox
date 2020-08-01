@@ -7,15 +7,12 @@ export class ProductService  {
         return Product.findAll();
     }
 
-    public createProduct(name: string) {
-        return Product.build({name: name})
-            .save()
-            .then(() => {
-                return true;
-            })
-            .catch(e => {
-                console.error('Saving Error ')
-                return false;
-            });
+    public async createProduct(name: string): Promise<void> {
+        try {
+            await Product.build({name: name}).save()
+        } catch (e) {
+            console.log(`save error: ${e}`)
+            throw e
+        }
     }
 }

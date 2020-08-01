@@ -1,4 +1,4 @@
-import { Controller, Header, Get, Put, Param, Post, HttpCode, Body } from "@nestjs/common";
+import { Controller, Header, Get, Post, HttpCode, Body } from "@nestjs/common";
 import { ProductService } from '../providers/product/service/ProductService';
 
 @Controller('product')
@@ -11,7 +11,7 @@ export class ProductController {
     @Get('all')
     @Header('Content-Type','application/json')    
     async getAll() {
-        let products = await this.productService.getProducts();
+        const products = await this.productService.getProducts();
         return JSON.stringify(products);
     }
 
